@@ -14,10 +14,10 @@ letters.extend([
 
 for word in letters:
   if len(word) > 2:
-    page = requests.post('https://www.gamertag.net/check.php', data={'tag': word})
+    page = requests.post('https://www.gamertagavailability.com/check.php', data={'Gamertag': word, 'Language': 'English'})
     tree = html.fromstring(page.content)
-    available = tree.xpath('.//div[@class="available"]')
+    available = tree.xpath('.//div[@id="yres"]')
     if available:
-      print word
+      print(word)
     else:
-      print '-'
+      print('.')
